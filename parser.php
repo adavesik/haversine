@@ -35,7 +35,6 @@ $addr = $parser->parseXML($fn);
 $database->beginTransaction();
 
 foreach ($addr as $ad) {
-    //echo '<pre>' . print_r($ad,1) . '</pre>';
 
     $database->query('INSERT INTO address (address_address, address_street, address_cord_lat, address_cord_lon) VALUES (:address, :street, :lat, :lon)');
     $database->bind(':address', $ad['addresses_address']);
@@ -44,5 +43,5 @@ foreach ($addr as $ad) {
     $database->bind(':lon', $ad['addresses_cord_x']);
     $database->execute();
 }
-//echo $database->lastInsertId();
+
 $database->endTransaction();
